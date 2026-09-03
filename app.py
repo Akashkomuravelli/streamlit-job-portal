@@ -39,7 +39,7 @@ def home():
             "📝 Register",
             use_container_width=True
         ):
-            st.switch_page("pages/register.py")
+            st.switch_page("pages/Register.py")
 
 
 # ---------------- PAGES ----------------
@@ -58,7 +58,7 @@ login_page = st.Page(
 )
 
 register_page = st.Page(
-    "pages/register.py",
+    "pages/Register.py",
     title="Register",
     icon="📝"
 )
