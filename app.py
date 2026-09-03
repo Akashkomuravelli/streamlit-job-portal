@@ -8,58 +8,21 @@ st.set_page_config(
 )
 
 
-# ---------------- HOME ----------------
+# ---------------- HOME PAGE ----------------
 
 def home():
 
-    st.markdown(
-        """
-        <div style="text-align:center; padding:60px 0 40px 0;">
+    st.title("💼 Job Portal")
+    st.write("Welcome to Job Portal 🚀")
 
-            <div style="font-size:60px;">
-                💼
-            </div>
-
-            <h1 style="font-size:42px;">
-                Job Portal
-            </h1>
-
-            <p style="font-size:18px; color:gray;">
-                Find Opportunities • Build Your Future
-            </p>
-
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-
-    # ---------------- LOGIN & REGISTER ----------------
+    st.write("")
 
     col1, col2 = st.columns(2)
 
-
     with col1:
 
-        st.markdown(
-            """
-            <div style="
-                padding:30px;
-                border:1px solid #ddd;
-                border-radius:15px;
-                text-align:center;
-            ">
-
-                <h2>🔐 Login</h2>
-
-                <p>
-                    Already have an account?
-                </p>
-
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+        st.subheader("🔐 Login")
+        st.write("Already have an account?")
 
         if st.button(
             "🔐 Login",
@@ -67,28 +30,10 @@ def home():
         ):
             st.switch_page("pages/login.py")
 
-
     with col2:
 
-        st.markdown(
-            """
-            <div style="
-                padding:30px;
-                border:1px solid #ddd;
-                border-radius:15px;
-                text-align:center;
-            ">
-
-                <h2>📝 Register</h2>
-
-                <p>
-                    Create a new account
-                </p>
-
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+        st.subheader("📝 Register")
+        st.write("Create a new account")
 
         if st.button(
             "📝 Register",
@@ -102,7 +47,8 @@ def home():
 home_page = st.Page(
     home,
     title="Home",
-    icon="🏠"
+    icon="🏠",
+    default=True
 )
 
 login_page = st.Page(
@@ -112,7 +58,7 @@ login_page = st.Page(
 )
 
 register_page = st.Page(
-    "pages/Register.py",
+    "pages/register.py",
     title="Register",
     icon="📝"
 )
@@ -130,7 +76,7 @@ jobseeker_page = st.Page(
 )
 
 
-# ---------------- NAVIGATION ----------------
+# ---------------- SIDEBAR NAVIGATION ----------------
 
 pg = st.navigation(
     [
@@ -140,7 +86,7 @@ pg = st.navigation(
         recruiter_page,
         jobseeker_page
     ],
-    position="hidden"
+    position="sidebar"
 )
 
 pg.run()

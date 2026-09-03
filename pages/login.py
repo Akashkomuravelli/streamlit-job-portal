@@ -1,51 +1,21 @@
 import streamlit as st
 import json
 
+
+# ---------------- PAGE CONFIG ----------------
+
 st.set_page_config(
     page_title="Login | Job Portal",
     page_icon="🔐",
     layout="centered"
 )
 
-# ---------------- HEADER ----------------
-
-st.markdown(
-    """
-    <div style="text-align:center; padding:20px 0 10px 0;">
-        <div style="font-size:55px;">🔐</div>
-
-        <h1 style="
-            margin-bottom:5px;
-            color:#1f2937;
-        ">
-            Welcome Back!
-        </h1>
-
-        <p style="
-            color:#6b7280;
-            font-size:17px;
-        ">
-            Login to continue your journey with Job Portal 🚀
-        </p>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
-
-st.write("")
 
 # ---------------- LOGIN FORM ----------------
 
-with st.form("LoginForm"):
+st.title("🔐 Login")
 
-    st.markdown(
-        """
-        <h3 style="margin-bottom:15px;">
-            🔑 Account Login
-        </h3>
-        """,
-        unsafe_allow_html=True
-    )
+with st.form("LoginForm"):
 
     e = st.text_input(
         "📧 Email",
@@ -53,13 +23,13 @@ with st.form("LoginForm"):
     )
 
     p = st.text_input(
-        "🔒 Password",
+        "🔑 Password",
         placeholder="Enter your password",
         type="password"
     )
 
     r = st.selectbox(
-        "👤 Login As",
+        "💼 Choose Role",
         ["Recruiter", "JobSeeker"]
     )
 
@@ -73,16 +43,19 @@ with st.form("LoginForm"):
 
 if btn:
 
+    # Check empty fields
     if not e or not p:
-        st.warning("⚠️ Please enter your email and password.")
+        st.error("⚠️ Please enter your email and password.")
 
     else:
 
+        # Read users.json
         with open("users.json", "r") as r_file:
             all_users = json.load(r_file)
 
         user_found = False
 
+        # Check credentials
         for user in all_users:
 
             if (
@@ -93,12 +66,14 @@ if btn:
 
                 user_found = True
 
+                # Store logged-in user
                 st.session_state["loggedin_user"] = {
                     "name": user.get("name"),
                     "email": user.get("email"),
                     "role": user.get("role")
                 }
 
+                # Recruiter
                 if r == "Recruiter":
 
                     st.success(
@@ -109,6 +84,7 @@ if btn:
                         "pages/RecruiterDashboard.py"
                     )
 
+                # JobSeeker
                 elif r == "JobSeeker":
 
                     st.success(
@@ -121,30 +97,23 @@ if btn:
 
                 break
 
+
+        # Invalid credentials
         if not user_found:
+
             st.error(
-                "❌ Invalid email, password, or selected role."
+                "❌ Invalid email, password, or role."
             )
 
 
-# ---------------- REGISTER LINK ----------------
+# ---------------- REGISTER ----------------
 
 st.write("")
-st.divider()
 
-st.markdown(
-    """
-    <div style="text-align:center;">
-        <p style="color:#6b7280;">
-            Don't have an account?
-        </p>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+st.write("Don't have an account?")
 
 if st.button(
-    "📝 Create New Account",
+    "📝 Create an Account",
     use_container_width=True
 ):
     st.switch_page("pages/register.py")
