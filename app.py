@@ -112,7 +112,7 @@ login_page = st.Page(
 )
 
 register_page = st.Page(
-    "pages/register.py",
+    "pages/Register.py",
     title="Register",
     icon="📝"
 )
