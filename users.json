@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Akash",
+        "email": "akashkomuravellie@gmail.com",
+        "password": "12345",
+        "c_password": "12345",
+        "role": "JobSeeker"
+    },
+    {
+        "name": "aa",
+        "email": "abc@gmail.com",
+        "password": "aabbcc",
+        "c_password": "aabbcc",
+        "role": "Recruiter"
+    },
+    {
+        "name": "Abcd",
+        "email": "abcd@gmail.com",
+        "password": "abcd",
+        "role": "JobSeeker"
+    }
+]
